@@ -20,7 +20,7 @@ public:
 
 //Поиск по баллам
 template <typename T>
-void FindScore(const list<T>& people)
+void FindScore(const list<T>& people,int &a)
 {
 	system("cls");
 	cout << "Введите Баллы: ";
@@ -32,11 +32,17 @@ void FindScore(const list<T>& people)
 			cout << "Имя: " << i.Name << " Баллы: " << i.Score << endl;
 			break;
 		}
+
+	cout << endl << "Нажмите 1 чтобы продолжить: \n";
+	int b;
+	cin >> b;
+	if (b == 1) system("cls");
+	else a = 5;
 }
 
 //Поиск по имени
 template <typename T>
-void FindName(const list<T>& people)
+void FindName(const list<T>& people,int &a)
 {
 	system("cls");
 	cout << "Введите имя: ";
@@ -48,7 +54,14 @@ void FindName(const list<T>& people)
 			cout << "Имя: " << i.Name << " Баллы: " << i.Score << endl;
 			break;
 		}
+
+	cout << endl << "Нажмите 1 чтобы продолжить: \n";
+	int b;
+	cin >> b;
+	if (b == 1) system("cls");
+	else a = 5;
 }
+
 
 int main()
 {
@@ -78,19 +91,106 @@ int main()
 
 		switch (a)
 		{
+			//Добавление позиций
 		case 1:
 		{
+			system("cls");
 
+			string n;
+			double s;
+			cout << "Введите имя студента: ";
+			cin >> n;
+			cout << "Введите балл студента: ";
+			cin >> s;
+
+			Student s2(n, s);
+
+			cout << " 1 – Добавить вначало\n";
+			cout << " 2 – Добавить в конец\n";
+			cout << " 3 – Добавить в выбраную позицию\n";
+			cin >> a;
+			switch (a)
+			{
+			case 1: {
+				people.push_front(s2);
+				system("cls");
+
+			}
+				  break;
+			case 2: {
+				people.push_back(s2);
+				system("cls");
+
+			}
+				  break;
+			case 3: {
+
+				system("cls");
+				cout << "Введите позицию на которую хотите вставить элемент\n";
+				cout << "Select: ";
+				auto it = people.begin();
+				cin >> a;
+				a--;
+				advance(it, a);
+				people.insert(it, s2);
+
+			}
+				  break;
+				  system("cls");
+			}
 		}
 		break;
 		case 2:
 		{
+			system("cls");
+			cout << " 1 – Удалить первый элемент\n";
+			cout << " 2 – Удалить последний элемент\n";
+			cout << " 3 – Удалить элемент по индексу\n";
+			cin >> a;
+			switch (a)
+			{
+			case 1: {
+				people.pop_front();
+				system("cls");
+			}
+				  break;
+			case 2: {
+				people.pop_back();
+				system("cls");
+			}
+				  break;
+			case 3:
+			{
+				system("cls");
+				for (auto i : people)
+					cout << "Имя: " << i.Name << " Баллы: " << i.Score << endl;
 
+				cout << "Введите позицию  Которую хотите удалить\n";
+				cout << "Select: ";
+				auto it = people.begin();
+				cin >> a;
+				a--;
+				advance(it, a);
+				people.erase(it);
+			}
+
+
+			system("cls");
+			}
 		}
 		break;
 		case 3:
 		{
+			system("cls");
+			cout << "Всего элементов: " << people.size() << endl << endl;
 
+			for (auto i : people)
+				cout << "Имя: " << i.Name << " Баллы: " << i.Score << endl;
+			cout << endl<<"Нажмите 1 чтобы продолжить: \n";
+			int b;
+			cin >> b;
+			if (b == 1) system("cls");
+			else a = 5;
 		}
 		break;
 		case 4:
@@ -104,9 +204,9 @@ int main()
 
 			switch (a)
 			{
-			case 1: FindName(people);
+			case 1: FindName(people,a);
 				break;
-			case 2: FindScore(people);
+			case 2: FindScore(people,a);
 				break;
 			}
 			break;
