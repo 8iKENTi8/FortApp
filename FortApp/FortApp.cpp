@@ -111,18 +111,21 @@ int main()
 			cin >> a;
 			switch (a)
 			{
+				//Add to front
 			case 1: {
 				people.push_front(s2);
 				system("cls");
 
 			}
 				  break;
+				  //Add to back
 			case 2: {
 				people.push_back(s2);
 				system("cls");
 
 			}
 				  break;
+				  //Добавление по индексу
 			case 3: {
 
 				system("cls");
@@ -140,6 +143,7 @@ int main()
 			}
 		}
 		break;
+		//Удаление позиций
 		case 2:
 		{
 			system("cls");
